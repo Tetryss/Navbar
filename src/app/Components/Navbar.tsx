@@ -15,16 +15,6 @@ import {
     Weight,
 } from "lucide-react";
 
-/**
- * Changes the Background color of the Navbar.
- * Refer to this link for the tailwind color palette here: https://tailwindcss.com/docs/customizing-colors
- */
-const NAVBAR_COLOR = "gray-800";
-/**
- * Changes the Accent Color of the Navbar (Currently sky blue).
- */
-const ACCENT_COLOR = "sky-400";
-
 export default function Navbar() {
     const [collapse, setCollapse] = useState(false);
     const clickCollapse = () => {
