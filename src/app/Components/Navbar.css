@@ -1,0 +1,20 @@
+.lucide {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.5px;
+}
+
+.lucide-chevrons-right {
+    width: 30px !important;
+    height: 30px !important;
+}
+
+/* when data-open is "true" */
+#collapsible[data-open="true"] {
+    grid-template-rows: 0fr !important;
+}
+
+/* when data-open is "false" */
+#collapsible[data-open="false"] {
+    grid-template-rows: 1fr !important;
+}
