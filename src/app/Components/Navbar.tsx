@@ -15,6 +15,8 @@ import {
     Weight,
 } from "lucide-react";
 
+const SITE_NAME = "Company Name";
+
 export default function Navbar() {
     const [collapse, setCollapse] = useState(false);
     const clickCollapse = () => {
@@ -30,9 +32,9 @@ export default function Navbar() {
             <div className="w-full flex items-center p-2 pl-4 text-2xl font-bold">
                 <Link
                     href="/"
-                    className={`hover:cursor-pointer bg-gradient-to-r from-sky-400 to-white bg-clip-text hover:text-transparent transition-all duration-700`}
+                    className={`hover:cursor-pointer bg-gradient-to-r from-sky-400 to-white bg-clip-text hover:text-transparent transition-all duration-700 text-nowrap`}
                 >
-                    {!collapse && "Company"}
+                    {!collapse && SITE_NAME}
                 </Link>
                 <div
                     className={`${
