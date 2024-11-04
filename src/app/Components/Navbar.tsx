@@ -86,7 +86,6 @@ export default function Navbar() {
                     collapsed={collapse}
                 />
             </ol>
-            <div className="p-4 bottom-1 absolute">HELLLO</div>
         </nav>
     );
 }
