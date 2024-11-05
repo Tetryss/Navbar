@@ -13,6 +13,7 @@ import {
     Wrench,
     Ruler,
     Weight,
+    Wifi,
 } from "lucide-react";
 
 const SITE_NAME = "Company Name";
@@ -27,7 +28,7 @@ export default function Navbar() {
             <nav
                 className={`${
                     !collapse ? "w-[250px]" : "w-[55px]"
-                } self-start sticky top-0 h-screen bg-navcolor transition-all duration-300 rounded-r-xl`}
+                } self-start sticky top-0 h-screen bg-navcolor transition-all duration-300 rounded-r-xl overflow-y-scroll no-scrollbar`}
             >
                 <div className="w-full flex items-center p-2 pl-4 text-2xl font-bold">
                     <Link
@@ -52,6 +53,7 @@ export default function Navbar() {
                     </div>
                 </div>
                 <ol className="p-2 list-none font-bold hover:cursor-pointer">
+                    {/* LINKS GO DOWN */}
                     <Linkhref
                         divLink="Dashboard"
                         SVG={LayoutGrid}
@@ -77,6 +79,12 @@ export default function Navbar() {
                         SVG={Wrench}
                         collapsed={collapse}
                     />
+                    <Linkhref
+                        divLink="Connectivity"
+                        SVG={Wifi}
+                        collapsed={collapse}
+                    />
+                    {/* LINKS GO UP */}
                 </ol>
             </nav>
         </div>
@@ -111,7 +119,7 @@ function Linkhref({
                     <div>
                         <div
                             onClick={clickHandler}
-                            className="w-full flex justify-start gap-2 p-2 hover:text-accents hover:bg-[rgba(0,0,0,0.4)] rounded-lg list-none transition-all duration-150"
+                            className={`w-full flex justify-start gap-2 p-2 hover:text-accents hover:bg-[rgba(0,0,0,0.4)] rounded-lg list-none transition-all duration-150`}
                         >
                             {SVG && !collapsed && <SVG />}
                             {!collapsed && divLink}
@@ -139,9 +147,6 @@ function Linkhref({
                                 >
                                     {SVG && <SVG />}
                                     {!collapsed && divLink}
-                                    {/* {!collapsed && (
-                                        <Link href={divLink}>{divLink}</Link>
-                                    )} */}
                                 </Link>
                             ))}
                         </div>
