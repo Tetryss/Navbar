@@ -31,9 +31,9 @@
 <Linkhref
     divLink="Utility"
     sublink={[
-        { divLink: "Calculator",    Code },
+        { divLink: "Calculator", Code },
         { divLink: "Ruler", SVG: Ruler },
-        { divLink: "Conversion",    Weight },
+        { divLink: "Conversion", Weight },
     ]}
     SVG={Wrench}
     collapsed={collapse}
@@ -61,3 +61,10 @@ accents: "var(--globalVariable2)",
 -   [x] Simple customization
 -   [ ] Mobile support
 -   [ ] Footer/Credits section
+-   [ ] Inline Customization (Further simplification). [^1]
+
+#
+
+[^1]:
+    `<Navbar data={. . .}/>` Where data can be either an array of your data, or a json file.
+    The idea here is to further simplify usage of the component.
