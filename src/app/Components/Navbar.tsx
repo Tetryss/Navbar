@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import "./Navbar.css";
+import { usePathname } from "next/navigation";
 import {
     LayoutGrid,
     Coffee,
@@ -21,8 +22,17 @@ const SITE_NAME = "Company Name";
 export default function Navbar() {
     const [collapse, setCollapse] = useState(false);
     const clickCollapse = () => {
-        setCollapse((prev) => !prev);
+        setCollapse((prev) => {
+            localStorage.setItem("collapsed", (!prev).toString());
+            return !prev;
+        });
     };
+    useEffect(() => {
+        const item = localStorage.getItem("collapsed");
+        if (item) {
+            setCollapse(JSON.parse(item));
+        }
+    }, []);
     return (
         <div id="stickynav" className="">
             <nav
@@ -32,6 +42,7 @@ export default function Navbar() {
             >
                 <div className="w-full flex items-center p-2 pl-4 text-2xl font-bold">
                     <Link
+                        shallow={true}
                         href="/"
                         className={`hover:cursor-pointer bg-gradient-to-r from-accents to-white bg-clip-text hover:text-transparent transition-all duration-700 text-nowrap`}
                     >
@@ -107,6 +118,7 @@ function Linkhref({
     collapsed,
 }: LinkType): React.ReactNode {
     const [isCollapsed, setIsCollapsed] = useState(true);
+    const pathname = usePathname();
 
     const clickHandler = () => {
         setIsCollapsed((prev) => !prev);
@@ -141,9 +153,13 @@ function Linkhref({
                         <div className="overflow-hidden">
                             {sublink.map(({ divLink, SVG }, index) => (
                                 <Link
+                                    shallow={true}
                                     href={divLink}
                                     key={index}
-                                    className="w-full flex justify-start gap-2 p-2 hover:text-accents hover:bg-[rgba(0,0,0,0.4)] rounded-lg list-none transition-all duration-150"
+                                    className={`w-full flex justify-start gap-2 p-2 hover:text-accents hover:bg-[rgba(0,0,0,0.4)] rounded-lg list-none transition-all duration-150 ${
+                                        pathname === "/" + divLink &&
+                                        "text-accents"
+                                    }`}
                                 >
                                     {SVG && <SVG />}
                                     {!collapsed && divLink}
@@ -154,8 +170,11 @@ function Linkhref({
                 </div>
             ) : (
                 <Link
+                    shallow={true}
                     href={divLink}
-                    className="w-full flex justify-start gap-2 p-2 hover:text-accents hover:bg-[rgba(0,0,0,0.4)] rounded-lg list-none transition-all duration-150"
+                    className={`w-full flex justify-start gap-2 p-2 hover:text-accents hover:bg-[rgba(0,0,0,0.4)] rounded-lg list-none transition-all duration-150 ${
+                        pathname === "/" + divLink && "text-accents"
+                    }`}
                 >
                     {SVG && <SVG />}
                     {!collapsed && divLink}
